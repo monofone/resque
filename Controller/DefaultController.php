@@ -3,7 +3,7 @@
 namespace ResqueBundle\Resque\Controller;
 
 use ResqueBundle\Resque\Resque;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -11,8 +11,15 @@ use Symfony\Component\HttpFoundation\Response;
  * Class DefaultController
  * @package ResqueBundle\Resque\Controller
  */
-class DefaultController extends Controller
+class DefaultController extends AbstractController
 {
+    protected $resque;
+
+    public function __construct(\ResqueBundle\Resque\Resque $resque)
+    {
+        $this->resque = $resque;
+    }
+
     /**
      * @return Response
      */
@@ -33,7 +40,7 @@ class DefaultController extends Controller
      */
     protected function getResque()
     {
-        return $this->get('ResqueBundle\Resque\Resque');
+        return $this->resque;
     }
 
     /**

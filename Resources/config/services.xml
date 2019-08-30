@@ -27,5 +27,9 @@
                 <argument>%resque.redis.database%</argument>
             </call>
         </service>
+        <service public="true" id="ResqueBundle\Resque\Controller\DefaultController" class="ResqueBundle\Resque\Controller\DefaultController">
+            <argument type="service" id="ResqueBundle\Resque\Resque" />
+            <tag name="controller.service_arguments" />
+        </service>
     </services>
 </container>
