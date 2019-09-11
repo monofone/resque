@@ -15,6 +15,9 @@ use Symfony\Component\Process\Process;
  */
 class StartWorkerCommand extends ContainerAwareCommand
 {
+
+
+
     /**
      *
      */

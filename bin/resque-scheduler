@@ -2,7 +2,6 @@
 <?php
 
 $autoloadFiles = [
-    __DIR__ . '/../../../../app/autoload.php',
     __DIR__ . '/../../../../vendor/autoload.php',
     __DIR__ . '/../vendor/autoload.php',
 ];

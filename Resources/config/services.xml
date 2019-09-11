@@ -8,6 +8,7 @@
         <parameter key="resque.kernel.root_dir">%kernel.root_dir%</parameter>
         <parameter key="resque.vendor_dir"/>
         <parameter key="resque.class"/>
+        <parameter key="resque.kernel.class"/>
         <parameter key="resque.prefix"/>
         <parameter key="resque.redis.host"/>
         <parameter key="resque.redis.port"/>
@@ -18,6 +19,7 @@
         <service id="ResqueBundle\Resque\Resque" class="%resque.class%" lazy="true">
             <argument type="collection">
                 <argument key="kernel.root_dir">%resque.worker.root_dir%</argument>
+                <argument key="kernel.class">%resque.kernel.class%</argument>
                 <argument key="kernel.debug">%kernel.debug%</argument>
                 <argument key="kernel.environment">%kernel.environment%</argument>
             </argument>
@@ -30,6 +32,24 @@
         <service public="true" id="ResqueBundle\Resque\Controller\DefaultController" class="ResqueBundle\Resque\Controller\DefaultController">
             <argument type="service" id="ResqueBundle\Resque\Resque" />
             <tag name="controller.service_arguments" />
+        </service>
+        <service public="true" id="ResqueBundle\Resque\Command\StartWorkerCommand" class="ResqueBundle\Resque\Command\StartWorkerCommand">
+            <tag name="console.command" />
+        </service>
+        <service public="true" id="ResqueBundle\Resque\Command\StopWorkerCommand" class="ResqueBundle\Resque\Command\StopWorkerCommand">
+            <tag name="console.command" />
+        </service>
+        <service public="true" id="ResqueBundle\Resque\Command\StartScheduledWorkerCommand" class="ResqueBundle\Resque\Command\StartScheduledWorkerCommand">
+            <tag name="console.command" />
+        </service>
+        <service public="true" id="ResqueBundle\Resque\Command\StopScheduledWorkerCommand" class="ResqueBundle\Resque\Command\StopScheduledWorkerCommand">
+            <tag name="console.command" />
+        </service>
+        <service public="true" id="ResqueBundle\Resque\Command\ClearQueueCommand" class="ResqueBundle\Resque\Command\ClearQueueCommand">
+            <tag name="console.command" />
+        </service>
+        <service public="true" id="ResqueBundle\Resque\Command\CleanUpWorkersCommand" class="ResqueBundle\Resque\Command\CleanUpWorkersCommand">
+            <tag name="console.command" />
         </service>
     </services>
 </container>
